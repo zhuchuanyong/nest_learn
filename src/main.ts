@@ -2,14 +2,27 @@
  * @Author: zhuchuanyong
  * @Date: 2020-05-07 22:34:14
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2020-05-10 17:14:46
+ * @LastEditTime: 2020-05-10 21:18:12
  * @FilePath: \src\main.ts
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
+import { prop, getModelForClass } from '@typegoose/typegoose';
+import * as mongoose from 'mongoose';
+
 async function bootstrap() {
+
+  await mongoose.connect('mongodb://localhost:27017/',
+    {
+      useNewUrlParser: true,
+      useFindAndModify:false,
+      useCreateIndex:true,
+      dbName: "nest-blog-api"
+    }
+  );
+
   const app = await NestFactory.create(AppModule);
 
   // Swagger接口文档配置
