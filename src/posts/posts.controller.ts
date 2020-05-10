@@ -2,17 +2,17 @@
  * @Author: zhuchuanyong
  * @Date: 2020-05-10 16:56:03
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2020-05-10 21:23:20
+ * @LastEditTime: 2020-05-10 21:52:45
  * @FilePath: \src\posts\posts.controller.ts
  */
-import { Controller, Get, Post, Body, Query, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param, Put, Delete } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiProperty } from '@nestjs/swagger';
 import { PostModel } from './post.model';
 
 class CreatePostDto {
-    @ApiProperty({ description: "帖子标题" })
+    @ApiProperty({ description: "帖子标题", example: '帖子标题1' })
     title: string;
-    @ApiProperty({ description: "帖子内容" })
+    @ApiProperty({ description: "帖子内容", example: '内容1' })
     content: string
 }
 
@@ -27,8 +27,9 @@ export class PostsController {
 
     @Post()
     @ApiOperation({ summary: '创建帖子' })
-    create(@Body() body: CreatePostDto) {
-        console.log(body)
+    async create(@Body() createPostDto: CreatePostDto) {
+        console.log(createPostDto)
+        await PostModel.create(createPostDto)
 
         return {
             success: true
@@ -36,13 +37,31 @@ export class PostsController {
     }
 
     @Get(':id')
-    detail(@Body() body, @Query() query, @Param() params) {
-        console.log(body)
-        console.log(query)
-        console.log(params)
+    @ApiOperation({ summary: '帖子详情' })
+    async detail(@Param  ("id") id: string) {
+
+
+        return await PostModel.findById(id)
+    }
+
+    @Put(':id')
+    @ApiOperation({ summary: '帖子更新' })
+    async update(@Param  ("id") id: string,@Body() updatePostDto:CreatePostDto) {
+
+        await PostModel.findByIdAndUpdate(id,updatePostDto)
         return {
-            id: 1,
-            title: 'wwww2'
+            success: true
+        }
+    }
+
+    @Delete(':id')
+    @ApiOperation({ summary: '帖子删除' })
+    async remove(@Param  ("id") id: string) {
+
+        // await PostModel.findByIdAndRemove(id);
+        await PostModel.findByIdAndDelete(id);
+        return {
+            success: true
         }
     }
 }
