@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2020-05-07 22:34:14
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2020-05-10 22:09:56
+ * @LastEditTime: 2020-05-10 22:38:45
  * @FilePath: \src\main.ts
  */
 import { NestFactory } from '@nestjs/core';
@@ -14,14 +14,14 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
 
-  await mongoose.connect('mongodb://localhost:27017/',
-    {
-      useNewUrlParser: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-      dbName: "nest-blog-api"
-    }
-  );
+  // await mongoose.connect('mongodb://localhost:27017/',
+  //   {
+  //     useNewUrlParser: true,
+  //     useFindAndModify: false,
+  //     useCreateIndex: true,
+  //     dbName: "nest-blog-api"
+  //   }
+  // );
 
   const app = await NestFactory.create(AppModule);
 

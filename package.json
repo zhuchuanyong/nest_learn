@@ -1,5 +1,5 @@
 {
-  "name": "nest-chat-api",
+  "name": "nest-curd-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -29,6 +29,7 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "mongoose": "^5.9.13",
+    "nestjs-typegoose": "^7.1.22",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",

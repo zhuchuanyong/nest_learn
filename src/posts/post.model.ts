@@ -1,12 +1,13 @@
-import { getModelForClass, prop } from "@typegoose/typegoose";
+import { prop } from "@typegoose/typegoose";
 
 /*
  * @Author: zhuchuanyong
  * @Date: 2020-05-10 21:18:34
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2020-05-10 21:21:28
+ * @LastEditTime: 2020-05-10 22:53:51
  * @FilePath: \src\posts\post.model.ts
  */
+// Post 就是表名称  posts
 export class Post {
     @prop()
     title:string
@@ -14,5 +15,3 @@ export class Post {
     @prop()
     content:string
 }
-
-export const PostModel=getModelForClass(Post)
