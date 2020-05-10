@@ -2,18 +2,17 @@
  * @Author: zhuchuanyong
  * @Date: 2020-05-07 22:34:14
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2020-05-07 23:24:01
+ * @LastEditTime: 2020-05-10 16:59:03
  * @FilePath: \src\app.module.ts
  */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { UsersController } from './users/users.controller';
-// import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
-  imports: [UsersModule],
+  imports: [UsersModule, PostsModule],
   controllers: [AppController],
   providers: [AppService],
 })
