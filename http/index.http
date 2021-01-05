@@ -1,0 +1,31 @@
+@hostname = http://localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+GET {{host}}/user
+
+###
+GET {{host}}/user?ids=123&a=345
+
+###
+GET {{host}}/user/100 
+
+###
+POST {{host}}/user 
+Content-Type: {{contentType}}
+
+{
+    "content": "foo bar"
+}
+
+###
+
+# PATCH https://{{host}}/authors/{{name}} HTTP/1.1
+# Content-Type: {{contentType}}
+
+# {
+#     "content": "foo bar",
+#     "created_at": "{{createdAt}}",
+#     "modified_by": "{{modifiedBy}}"
+# }
