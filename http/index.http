@@ -16,7 +16,9 @@ POST {{host}}/user
 Content-Type: {{contentType}}
 
 {
-    "content": "foo bar"
+    "name":"zs",
+    "age":80,
+    "gender":123
 }
 
 ###
