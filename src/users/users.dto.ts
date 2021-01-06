@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-06 17:18:25
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-06 17:25:19
+ * @LastEditTime: 2021-01-06 20:47:20
  * @FilePath: \src\users\users.dto.ts
  */
 
@@ -14,6 +14,6 @@ export class CreateUserDto {
   @IsInt()
   age: number;
 
-  @IsString()
+  @IsString({ message: '性别必须为字符' })
   gender: string;
 }
