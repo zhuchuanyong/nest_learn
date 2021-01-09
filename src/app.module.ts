@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:47:36
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 11:41:07
+ * @LastEditTime: 2021-01-09 14:46:18
  * @FilePath: \src\app.module.ts
  */
 import {
@@ -16,9 +16,24 @@ import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/user.entity';
 
 @Module({
-  imports: [UsersModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '123456',
+      database: 'nest',
+      entities: [User],
+      synchronize: true,
+    }),
+    UsersModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

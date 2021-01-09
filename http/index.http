@@ -2,7 +2,7 @@
 @port = 3000
 @host = {{hostname}}:{{port}}
 @contentType = application/json
-@Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTYxMDE3MzM5MiwiZXhwIjoxNjEwMTczNDUyfQ.eaftNb37Eq4kRLiJ5XZ-52iwTBxD07AixO7iegz_1n0
+@Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTYxMDE3NTA2NSwiZXhwIjoxNjEwMjM1MDY1fQ.XFscDg2VNYsA7hP8wxvjMdqho2DyieXQfgqzhuEOgFo
 POST {{host}}/auth/login 
 Content-Type: {{contentType}}
 
@@ -22,18 +22,33 @@ GET {{host}}/user
 GET {{host}}/user?ids=123&a=345
 
 ###
-GET {{host}}/user/100 
+GET {{host}}/user/4000
 
 ###
 POST {{host}}/user 
 Content-Type: {{contentType}}
 
 {
-    "name":"zs",
-    "age":80,
-    "gender":123
+    "username":"zcy",
+    "password":"123456",
+     "age":30,
+     "gender":"男"
 }
 
+### 
+PUT {{host}}/user 
+Content-Type: {{contentType}}
+
+{
+    "username":"zcy001",
+    "password":"123",
+    "id":1304,
+     "age":30,
+     "gender":"男"
+}
+
+###
+DELETE {{host}}/user/5
 ###
 
 # PATCH https://{{host}}/authors/{{name}} HTTP/1.1
