@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:47:36
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-05 20:45:52
+ * @LastEditTime: 2021-01-09 11:41:07
  * @FilePath: \src\app.module.ts
  */
 import {
@@ -15,9 +15,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [UsersModule],
+  imports: [UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
