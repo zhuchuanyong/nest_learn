@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:52:10
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 16:59:06
+ * @LastEditTime: 2021-01-11 00:24:16
  * @FilePath: \src\users\users.controller.ts
  */
 import {
@@ -17,9 +17,17 @@ import {
   Req,
   UsePipes,
 } from '@nestjs/common';
+import {
+  ApiBody,
+  ApiCreatedResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CreateUserDto } from './users.dto';
 import { UsersService } from './users.service';
 import { ValidationPipe } from './validation.pipe';
+
+@ApiTags('user')
 @Controller('user')
 export class UsersController {
   constructor(private userService: UsersService) {}
@@ -40,8 +48,12 @@ export class UsersController {
 
   // 新增用户
   @Post()
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+    type: CreateUserDto,
+  })
   @UsePipes(new ValidationPipe())
-  async create(@Body(new ValidationPipe()) body: CreateUserDto) {
+  async create(@Body() body: CreateUserDto) {
     console.log('body', body);
     const res = await this.userService.create(body);
     console.log('res', res);
@@ -59,6 +71,7 @@ export class UsersController {
 
   // 更新
   @Put()
+  @ApiBody({ type: CreateUserDto })
   async update(@Body() body) {
     console.log('body', body);
     return await this.userService.update(body);
