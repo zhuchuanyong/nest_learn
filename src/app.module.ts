@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:47:36
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 14:46:18
+ * @LastEditTime: 2021-01-10 20:24:19
  * @FilePath: \src\app.module.ts
  */
 import {
@@ -23,7 +23,7 @@ import { User } from './users/user.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '60.205.251.152',
       port: 3306,
       username: 'root',
       password: '123456',
