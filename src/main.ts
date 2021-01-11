@@ -2,12 +2,13 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 21:52:54
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-11 18:58:08
+ * @LastEditTime: 2021-01-12 00:25:32
  * @FilePath: \src\main.ts
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -21,6 +22,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
+
+  app.useGlobalFilters(new HttpExceptionFilter());
   await app.listen(3000);
 }
 bootstrap();

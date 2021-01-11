@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:47:36
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-10 20:24:19
+ * @LastEditTime: 2021-01-12 00:13:45
  * @FilePath: \src\app.module.ts
  */
 import {
@@ -13,9 +13,9 @@ import {
 } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LoggerMiddleware } from './middleware/logger.middleware';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './common/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 
