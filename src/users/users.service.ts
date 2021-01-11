@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:52:54
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 17:03:14
+ * @LastEditTime: 2021-01-11 19:21:27
  * @FilePath: \src\users\users.service.ts
  */
 import { Injectable } from '@nestjs/common';
@@ -65,7 +65,7 @@ export class UsersService {
 
     if (user) {
       console.log('user', user);
-      const res = await this.usersRepository.create(body);
+      const res = await this.usersRepository.save(body);
       return res;
     } else {
       return '用户不存在';

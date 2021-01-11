@@ -2,12 +2,12 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-06 17:18:25
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-11 00:04:23
+ * @LastEditTime: 2021-01-11 19:07:19
  * @FilePath: \src\users\users.dto.ts
  */
 
-import { IsString, IsInt } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsInt, IsOptional } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 export class CreateUserDto {
   @ApiProperty({ description: '用户名' })
   @IsString()
@@ -17,9 +17,13 @@ export class CreateUserDto {
   @IsString()
   password: string;
 
-  // @IsInt()
-  // age: number;
+  @ApiPropertyOptional({ description: '年龄', default: 20 })
+  @IsOptional()
+  @IsInt()
+  age: number;
 
-  // @IsString({ message: '性别必须为字符' })
-  // gender: string;
+  @ApiPropertyOptional({ description: '性别', default: '男' })
+  @IsOptional()
+  @IsString({ message: '性别必须为字符' })
+  gender: string;
 }

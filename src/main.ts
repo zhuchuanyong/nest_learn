@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 21:52:54
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-11 00:00:26
+ * @LastEditTime: 2021-01-11 18:58:08
  * @FilePath: \src\main.ts
  */
 import { NestFactory } from '@nestjs/core';
