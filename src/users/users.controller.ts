@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:52:10
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-11 20:18:59
+ * @LastEditTime: 2021-01-12 00:41:19
  * @FilePath: \src\users\users.controller.ts
  */
 import {
@@ -29,6 +29,7 @@ import {
 import { CreateUserDto } from './users.dto';
 import { UsersService } from './users.service';
 import { ValidationPipe } from './validation.pipe';
+// import { ValidationPipe } from '@nestjs/common/pipes/validation.pipe';
 
 @ApiTags('user')
 @Controller('user')
