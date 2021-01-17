@@ -2,8 +2,8 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-09 10:51:18
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 14:34:34
- * @FilePath: \src\auth\auth.module.ts
+ * @LastEditTime: 2021-01-17 10:42:02
+ * @FilePath: \src\common\auth\auth.module.ts
  */
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
@@ -20,7 +20,7 @@ import { LocalStrategy } from './local.strategy';
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60000s' },
+      signOptions: { expiresIn: '20s' },
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],

@@ -2,9 +2,12 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-09 14:13:05
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 14:14:16
- * @FilePath: \src\auth\jwt.strategy.ts
+ * @LastEditTime: 2021-01-17 10:29:29
+ * @FilePath: \src\common\auth\jwt.strategy.ts
  */
+
+// jwt.strategy.ts 用于需要身份验证的接口
+// local.Strategy.ts 用于登录接口 没有身份验证的接口
 
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';

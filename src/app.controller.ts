@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:47:36
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-09 14:17:54
+ * @LastEditTime: 2021-01-17 10:44:57
  * @FilePath: \src\app.controller.ts
  */
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
@@ -23,6 +23,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  // @UseGuards(AuthGuard('local'))
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req) {
