@@ -2,41 +2,20 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:52:54
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-11 19:21:27
+ * @LastEditTime: 2021-01-17 11:26:25
  * @FilePath: \src\users\users.service.ts
  */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-export type LUser = any;
 
 @Injectable()
 export class UsersService {
-  private readonly Lusers: LUser[];
-
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-  ) {
-    this.Lusers = [
-      {
-        userId: 1,
-        username: 'john',
-        password: 'changeme',
-      },
-      {
-        userId: 2,
-        username: 'chris',
-        password: 'secret',
-      },
-      {
-        userId: 3,
-        username: 'maria',
-        password: 'guess',
-      },
-    ];
-  }
+  ) {}
   // 新增用户
   async create(body) {
     const user = await this.usersRepository.save(body);
@@ -47,7 +26,7 @@ export class UsersService {
     }
   }
 
-  //查找
+  //根据id查找用户
   async find(id) {
     const user = await this.usersRepository.findOne(id);
     if (user) {
@@ -82,11 +61,22 @@ export class UsersService {
     }
   }
 
-  findOne(username: string): Promise<LUser | undefined> {
-    console.log('123', 123);
-    return this.Lusers.find((user) => user.username === username);
+  // 根据用户名查找用户
+  async loginfind(username: string, password: string): Promise<any> {
+    const user = await this.usersRepository.findOne({
+      where: { username, password },
+    });
+
+    return user;
   }
-  findAll() {
-    return 'server Findall';
+  // 获取全部用户
+  async findAll() {
+    const user = await this.usersRepository.find();
+    console.log('user', user);
+    if (user) {
+      return user;
+    } else {
+      return '用户不存在';
+    }
   }
 }

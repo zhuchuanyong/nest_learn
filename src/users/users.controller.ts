@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:52:10
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-12 00:41:19
+ * @LastEditTime: 2021-01-17 11:44:35
  * @FilePath: \src\users\users.controller.ts
  */
 import {
@@ -15,8 +15,10 @@ import {
   Put,
   Query,
   Req,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import {
   ApiBody,
   ApiCreatedResponse,
@@ -37,18 +39,13 @@ export class UsersController {
   constructor(private userService: UsersService) {}
 
   @Get()
+  @UseGuards(AuthGuard('jwt'))
   findAll(@Query() query) {
     // console.log('request', request);
     console.log('query', query);
     const data = this.userService.findAll();
-    return `GET获取用户${data}`;
+    return data;
   }
-
-  // @Get(':id')
-  // userParam(@Param() param) {
-  //   console.log('param', param);
-  //   return param;
-  // }
 
   // 新增用户
   @ApiOperation({ summary: '新增用户' })
@@ -70,6 +67,7 @@ export class UsersController {
   @Get(':id')
   @ApiOperation({ summary: '通过id 查找用户' })
   @ApiParam({ name: 'id' })
+  @UseGuards(AuthGuard('jwt'))
   async find(@Param() param) {
     console.log('param', param);
     const res = await this.userService.find(param);
@@ -81,6 +79,7 @@ export class UsersController {
   @Put()
   @ApiOperation({ summary: '更新用户' })
   @ApiBody({ type: CreateUserDto })
+  @UseGuards(AuthGuard('jwt'))
   async update(@Body() body) {
     console.log('body', body);
     return await this.userService.update(body);
@@ -90,6 +89,7 @@ export class UsersController {
   @Delete(':id')
   @ApiOperation({ summary: '通过id 删除用户' })
   @ApiParam({ name: 'id' })
+  @UseGuards(AuthGuard('jwt'))
   async del(@Param() param) {
     console.log('param', param);
     const res = await this.userService.del(param);

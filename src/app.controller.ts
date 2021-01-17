@@ -2,7 +2,7 @@
  * @Author: zhuchuanyong
  * @Date: 2021-01-05 19:47:36
  * @LastEditors: zhuchuanyong
- * @LastEditTime: 2021-01-17 10:44:57
+ * @LastEditTime: 2021-01-17 11:41:20
  * @FilePath: \src\app.controller.ts
  */
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
@@ -32,9 +32,10 @@ export class AppController {
     // return req.user;
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Get('profile')
   getProfile(@Request() req) {
+    console.log('req', req);
+    console.log('req.user', req.user);
     return req.user;
   }
 }
